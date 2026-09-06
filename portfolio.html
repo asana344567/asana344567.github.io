@@ -478,6 +478,11 @@
         });
       });
     });
+    items.forEach(item => {
+  if (item.dataset.cat !== 'tachie') {
+    item.classList.add('hide');
+  }
+});
 
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modalImage');

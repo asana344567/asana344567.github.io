@@ -588,17 +588,23 @@
 
     items.forEach(item => {
       item.addEventListener('click', () => {
-const imgs = item.querySelectorAll('img');
+const img = item.querySelector('img');
 
 modalImages.innerHTML = '';
 
-imgs.forEach(img => {
-  const modalImg = document.createElement('img');
-  modalImg.src = img.src;
-  modalImg.alt = img.alt;
-  modalImg.className = 'modal-image';
-  modalImages.appendChild(modalImg);
-});
+const modalImg1 = document.createElement('img');
+modalImg1.src = img.src;
+modalImg1.alt = img.alt;
+modalImg1.className = 'modal-image';
+modalImages.appendChild(modalImg1);
+
+if (item.dataset.image2) {
+  const modalImg2 = document.createElement('img');
+  modalImg2.src = item.dataset.image2;
+  modalImg2.alt = '';
+  modalImg2.className = 'modal-image';
+  modalImages.appendChild(modalImg2);
+}
 
 modalTitle.textContent = item.dataset.title || '';
         modalText.textContent = item.dataset.text || '';

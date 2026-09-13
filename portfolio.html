@@ -315,6 +315,32 @@
       .modal-body { padding: 20px; }
       .contact-box { padding: 30px 20px; }
     }
+    .modal-images {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-images .modal-image {
+  width: auto;
+  max-width: 48%;
+  max-height: 450px;
+  object-fit: contain;
+}
+    .modal-images {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-images .modal-image {
+  width: auto;
+  max-width: 48%;
+  max-height: 450px;
+  object-fit: contain;
+}
   </style>
 </head>
 <body>
@@ -356,13 +382,9 @@
  <div class="gallery-item" data-cat="tachie"
      data-text="">
   <img src="イラスト26.png" alt="">
-</div>
-      
- <div class="gallery-item" data-cat="sonota"
-     data-text="">
   <img src="イラスト25.png" alt="">
 </div>
-      
+          
  <div class="gallery-item" data-cat="sonota"
      data-text="">
   <img src="イラスト27.png" alt="">
@@ -516,7 +538,7 @@
   <div class="modal-overlay" id="modal">
     <div class="modal">
       <button class="modal-close" id="modalClose">×</button>
-      <img class="modal-image" id="modalImage" src="" alt="">
+   <div class="modal-images" id="modalImages"></div>
       <div class="modal-body">
         <div class="modal-title" id="modalTitle"></div>
         <div class="modal-text" id="modalText"></div>
@@ -557,7 +579,7 @@
 });
 
     const modal = document.getElementById('modal');
-    const modalImage = document.getElementById('modalImage');
+　　const modalImages = document.getElementById('modalImages');
     const modalTitle = document.getElementById('modalTitle');
     const modalText = document.getElementById('modalText');
     const modalLinks = document.getElementById('modalLinks');
@@ -565,9 +587,19 @@
 
     items.forEach(item => {
       item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        modalImage.src = img.src;
-        modalTitle.textContent = item.dataset.title || '';
+const imgs = item.querySelectorAll('img');
+
+modalImages.innerHTML = '';
+
+imgs.forEach(img => {
+  const modalImg = document.createElement('img');
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  modalImg.className = 'modal-image';
+  modalImages.appendChild(modalImg);
+});
+
+modalTitle.textContent = item.dataset.title || '';
         modalText.textContent = item.dataset.text || '';
 
         modalLinks.innerHTML = '';
